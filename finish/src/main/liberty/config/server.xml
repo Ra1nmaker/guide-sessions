@@ -25,9 +25,6 @@
     <variable name="default.http.port" defaultValue="9080"/>
     <variable name="default.https.port" defaultValue="9443"/>
     <variable name="app.context.root" defaultValue="guide-sessions"/>
-    <!-- tag::hazelcastLib[] -->
-    <variable name="hazelcast.lib" defaultValue="${shared.resource.dir}/hazelcast.jar"/>
-    <!-- end::hazelcastLib[] -->
      
     <!-- tag::InfinispanLib[] -->
     <variable name="infinispan.lib" defaultValue="${shared.resource.dir}/infinispan.jar"/>
@@ -35,17 +32,6 @@
 
     <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
         id="defaultHttpEndpoint" host="*" />
-    <!-- tag::httpSessionCache[] -->
-    <!-- <httpSessionCache libraryRef="jCacheVendorLib"
-        uri="file:${server.config.dir}/hazelcast-config.xml" /> -->
-    <!-- end::httpSessionCache[] -->
-    <!-- tag::library[] -->
-    <!-- <library id="jCacheVendorLib"> -->
-    	<!-- tag::hazelcastjar[] -->
-        <!-- <file name="${hazelcast.lib}" />  -->
-        <!-- end::hazelcastjar[] -->
-    <!-- </library>  -->
-    <!-- end::library[] -->
      
     <httpSessionCache libraryRef="InfinispanLib" enableBetaSupportForInfinispan="true">
         <properties infinispan.client.hotrod.server_list="example-infinispan:11222"/>
@@ -58,7 +44,6 @@
 
     <library id="InfinispanLib">
         <fileset dir="${shared.resource.dir}/infinispan" includes="*.jar"/>
-        <!-- <file name="${infinispan.lib}" /> -->
     </library>
 
     <webApplication location="guide-sessions.war" contextRoot="${app.context.root}" />
