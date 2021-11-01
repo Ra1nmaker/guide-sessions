@@ -28,20 +28,37 @@
     <!-- tag::hazelcastLib[] -->
     <variable name="hazelcast.lib" defaultValue="${shared.resource.dir}/hazelcast.jar"/>
     <!-- end::hazelcastLib[] -->
+     
+    <!-- tag::InfinispanLib[] -->
+    <variable name="infinispan.libdir" defaultValue="${shared.resource.dir}/infinispan"/>
+    <!-- end::InfinispanLib[] -->
 
     <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
         id="defaultHttpEndpoint" host="*" />
     <!-- tag::httpSessionCache[] -->
-    <httpSessionCache libraryRef="jCacheVendorLib"
-        uri="file:${server.config.dir}/hazelcast-config.xml" />
+    <!-- <httpSessionCache libraryRef="jCacheVendorLib"
+        uri="file:${server.config.dir}/hazelcast-config.xml" /> -->
     <!-- end::httpSessionCache[] -->
     <!-- tag::library[] -->
-    <library id="jCacheVendorLib">
+    <!-- <library id="jCacheVendorLib"> -->
     	<!-- tag::hazelcastjar[] -->
-        <file name="${hazelcast.lib}" />
+        <!-- <file name="${hazelcast.lib}" />  -->
         <!-- end::hazelcastjar[] -->
-    </library>
+    <!-- </library>  -->
     <!-- end::library[] -->
+     
+    <httpSessionCache libraryRef="InfinispanLib" enableBetaSupportForInfinispan="true">
+        <properties infinispan.client.hotrod.server_list="example-infinispan:11222"/>
+        <properties infinispan.client.hotrod.auth_username="developer"/>
+        <properties infinispan.client.hotrod.auth_password="fIkXLjVwyLkmohfc"/>
+        <properties infinispan.client.hotrod.auth_realm="default"/>
+        <properties infinispan.client.hotrod.sasl_mechanism="PLAIN"/>
+        <properties infinispan.client.hotrod.marshaller="org.infinispan.commons.marshall.JavaSerializationMarshaller"/>
+    </httpSessionCache>
+
+    <library id="InfinispanLib">
+        <fileset dir="${infinispan.libdir}" includes="*.jar"/>
+    </library>
 
     <webApplication location="guide-sessions.war" contextRoot="${app.context.root}" />
 
