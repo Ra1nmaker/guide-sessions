@@ -57,7 +57,8 @@
     </httpSessionCache>
 
     <library id="InfinispanLib">
-        <file name="${infinispan.lib}" />
+        <fileset dir="${shared.resource.dir}/infinispan" includes="*.jar"/>
+        <!-- <file name="${infinispan.lib}" /> -->
     </library>
 
     <webApplication location="guide-sessions.war" contextRoot="${app.context.root}" />
