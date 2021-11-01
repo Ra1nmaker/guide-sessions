@@ -44,11 +44,11 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.infinispan/infinispan-jcache -->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-jcache-remote</artifactId>
             <version>12.1.7.Final</version>
-        </dependency>
+        </dependency> -->
         
         <!-- For tests -->
         <dependency>
@@ -107,7 +107,7 @@
                         </goals>
                     </execution>
                 </executions>
-                <!-- <configuration>
+                <configuration>
                     <artifactItems>
                         <artifactItem>
                             <groupId>com.hazelcast</groupId>
@@ -117,8 +117,8 @@
                         </artifactItem>
                     </artifactItems>
                     <outputDirectory>${project.build.directory}</outputDirectory>
-                </configuration> -->
-                <configuration>
+                </configuration>
+                <!-- <configuration>
                     <artifactItems>
                         <artifactItem>
                             <groupId>org.infinispan</groupId>
@@ -128,7 +128,7 @@
                         </artifactItem>
                     </artifactItems>
                     <outputDirectory>${project.build.directory}/infinispan</outputDirectory>
-                </configuration>
+                </configuration> -->
             </plugin>
       
                   
