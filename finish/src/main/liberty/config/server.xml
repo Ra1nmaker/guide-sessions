@@ -30,7 +30,7 @@
     <!-- end::hazelcastLib[] -->
      
     <!-- tag::InfinispanLib[] -->
-    <variable name="infinispan.libdir" defaultValue="${shared.resource.dir}/infinispan"/>
+    <variable name="infinispan.lib" defaultValue="${shared.resource.dir}/infinispan.jar"/>
     <!-- end::InfinispanLib[] -->
 
     <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
@@ -57,7 +57,7 @@
     </httpSessionCache>
 
     <library id="InfinispanLib">
-        <fileset dir="${infinispan.libdir}" includes="*.jar"/>
+        <file name="${infinispan.lib}" />
     </library>
 
     <webApplication location="guide-sessions.war" contextRoot="${app.context.root}" />
