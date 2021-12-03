@@ -1,0 +1,9 @@
+<infinispan>
+  <jgroups>
+     <stack-file name="jgroups-kubernetes" path="/default-configs/default-jgroups-kubernetes.xml"/>
+  </jgroups>
+
+  <cache-container>
+    <transport stack="jgroups-kubernetes" />
+  </cache-container>
+</infinispan>
