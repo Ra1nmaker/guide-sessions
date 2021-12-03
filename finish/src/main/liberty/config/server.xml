@@ -34,9 +34,9 @@
         id="defaultHttpEndpoint" host="*" />
      
     <httpSessionCache libraryRef="InfinispanLib" enableBetaSupportForInfinispan="true">
-        <properties infinispan.client.hotrod.server_list="infinispan-imaz:11222"/>
-        <properties infinispan.client.hotrod.auth_username="developer"/>
-        <properties infinispan.client.hotrod.auth_password="9PlOrjXlQHdcjWlz"/>
+        <properties infinispan.client.hotrod.server_list="${env.SRV_HOST}:${env.SRV_PORT}"/>
+        <properties infinispan.client.hotrod.auth_username="${env.USER_NAME}"/>
+        <properties infinispan.client.hotrod.auth_password="${env.USER_PASSWD}"/>
         <properties infinispan.client.hotrod.auth_realm="default"/>
         <properties infinispan.client.hotrod.sasl_mechanism="DIGEST-MD5"/>
         <properties infinispan.client.hotrod.marshaller="org.infinispan.commons.marshall.JavaSerializationMarshaller"/>
