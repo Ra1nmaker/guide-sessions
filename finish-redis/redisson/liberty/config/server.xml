@@ -33,17 +33,11 @@
     <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
         id="defaultHttpEndpoint" host="*" />
      
-    <httpSessionCache libraryRef="InfinispanLib" enableBetaSupportForInfinispan="true">
-        <properties infinispan.client.hotrod.server_list="${env.SRV_HOST}:${env.SRV_PORT}"/>
-        <properties infinispan.client.hotrod.auth_username="${env.USER_NAME}"/>
-        <properties infinispan.client.hotrod.auth_password="${env.USER_PASSWD}"/>
-        <properties infinispan.client.hotrod.auth_realm="default"/>
-        <properties infinispan.client.hotrod.sasl_mechanism="DIGEST-MD5"/>
-        <properties infinispan.client.hotrod.marshaller="org.infinispan.commons.marshall.JavaSerializationMarshaller"/>
-    </httpSessionCache>
+    <!-- This yaml file could also be mounted and exposed via a ConfigMap or Kubernetes Secret -->
+    <httpSessionCache libraryRef="RedissonLib" uri="file:${server.config.dir}/redisson-config.yaml" />
 
-    <library id="InfinispanLib">
-        <fileset dir="${shared.resource.dir}/infinispan" includes="*.jar"/>
+    <library id="RedissonLib">
+        <fileset dir="${shared.resource.dir}/redisson" includes="*.jar"/>
     </library>
 
     <webApplication location="guide-sessions.war" contextRoot="${app.context.root}" />
